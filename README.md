@@ -63,6 +63,59 @@ https://blog.csdn.net/Jsoning/article/details/104015061
 [![2.png](https://i.postimg.cc/hPCvZxq2/2.png)](https://postimg.cc/ppFPpmrj)
 * 脚手架默认是查找`xx.spec.js`测试文件，刚才修改路径的时候我们保留了默认配置
 
+3. 项目检查  
+运行`npm run test`，即可对代码进行检查，这里添加了`--watchAll`，每次修改后会自动进行检查
+[![3.png](https://i.postimg.cc/8Pxf4MGL/3.png)](https://postimg.cc/w7cBTt7B)
+
+4. 这里对项目中 **异步代码测试** 和 **vuex进行测试** 分析一下，其他的都较好理解  
+在`Home.vue`中在进入页面的时候，会先去请求数据，将请求到的数据放入到vuex中，最后展示到页面
+### 异步代码测试
+* 在写测试用例的时候，不会去真的请求是数据，因此需要模拟数据，因此`__mock__`文件夹中就是模拟的数据
+```javascript
+export default {
+  // get请求，这里根据请求路径，模拟返回值
+  get(url) {
+    switch (url) {
+      case '/ceshi':
+        return new Promise(resolve => {
+          resolve({
+            data: ['测试1', '测试2', '测试3']
+          })
+        })
+    
+      default:
+        break;
+    }
+  }
+}
+```
+* 在`home.spec.js`中，这里写的是集成测试
+```javascript
+// 部分代码
+it(`
+    1. 用户进入界面请求数据
+    2. 将数据存储在vuex中
+    3. 页面展示数据
+    4. 点击图片删除对应数据
+  `, (done) => {
+    // 这里组件中使用到了vuex，因此将store和localVue，传入组件中
+      const wrapper = mount(Home, { store, localVue })
+      // Home组件created中请求数据，这里使用$nextTick和done等待异步代码的完成后执行断言
+      wrapper.vm.$nextTick(() => {
+        let items = wrapper.findAll('[data-test="item"]')
+        expect(items.length).toBe(3)
+
+        items.at(0).trigger('click')
+        items = wrapper.findAll('[data-test="item"]')
+        expect(items.length).toBe(2)
+        expect(items.at(0).text()).toBe('测试2')
+        done()
+      })
+  })
+```
+
+
+
 
 
 
