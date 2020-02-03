@@ -36,8 +36,9 @@ https://blog.csdn.net/Jsoning/article/details/104015061
 
 
 ## 在vue中使用jest
-$\color{red}{前提已经了解以上3点基础知识}$
-  
+
+**<font color=red>前提已经了解以上3点基础知识</font>**  
+
 这里做了一个demo，大致先了解一下demo所具有的功能
 [![11.gif](https://i.postimg.cc/DzDmDmwG/11.gif)](https://postimg.cc/wtX6RqJx)
 
@@ -51,4 +52,17 @@ $\color{red}{前提已经了解以上3点基础知识}$
 * 集成测试
 * 等
 
-**下面我们开始分析项目demo**
+**下面我们开始分析项目demo**  
+1. 安装jest  
+在通过`vue-cli`初始化项目的时候，选择单元测试和jest测试框架即可
+
+2. 项目结构  
+[![1.png](https://i.postimg.cc/SKrXm8pY/1.png)](https://postimg.cc/McnZDnHz)
+* 这里默认初始化完项目后，`tests`是一个单独的文件夹，如果将所有的测试文件都写在一个文件中，当你找一个测试文件时候比较麻烦。这里我将每个组件文件夹下都添加一个`tests`文件夹，这样项目结构使用起来更方便
+* 因为修改了测试文件的目录，因此需要重新在`jest.config.js`配置一下jest检查测试文件的查找路径(更多配置可以查看官网：https://jestjs.io/docs/en/configuration)
+[![2.png](https://i.postimg.cc/hPCvZxq2/2.png)](https://postimg.cc/ppFPpmrj)
+* 脚手架默认是查找`xx.spec.js`测试文件，刚才修改路径的时候我们保留了默认配置
+
+
+
+
