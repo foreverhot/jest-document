@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.vue 组件发生改变 1`] = `
+<header class="header">
+  <div class="header__img"><img src="@/assets/logo.jpg" alt="" height="100%"></div>
+  <div class="header__input"><input type="text" data-test="input" class="search"> <button data-test="button" class="button__add">添 加</button></div>
+</header>
+`;
