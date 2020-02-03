@@ -29,14 +29,15 @@ https://blog.csdn.net/Jsoning/article/details/104015061
 
 2. Vue Test Utils （ Vue.js官方的单元测试实用工具库）
 * 想要在vue中更方便的使用jest进行测试的话，vue官方很贴心的提供了一个test-utils，可以更方便的对vue中的组件，DOM等进行测试
-* 官方链接：https://vue-test-utils.vuejs.org/zh/
+* 官网链接：https://vue-test-utils.vuejs.org/zh/
 
 3. vuejs
-* 想要在vue中使用jest，对于vue框架的使用是必备的
+* 想要在vue中使用jest，对于vue框架的熟练使用是必备的
 
 
 ## 在vue中使用jest
-**<font color=red>前提已经了解以上3点基础知识</font>**  
+$\color{red}{前提已经了解以上3点基础知识}$
+  
 这里做了一个demo，大致先了解一下demo所具有的功能
 [![11.gif](https://i.postimg.cc/DzDmDmwG/11.gif)](https://postimg.cc/wtX6RqJx)
 
