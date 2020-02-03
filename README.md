@@ -69,7 +69,7 @@ https://blog.csdn.net/Jsoning/article/details/104015061
 
 4. 这里对项目中 **异步代码测试** 和 **vuex进行测试** 分析一下，其他的都较好理解  
 在`Home.vue`中在进入页面的时候，会先去请求数据，将请求到的数据放入到vuex中，最后展示到页面
-### 异步代码测试
+
 * 在写测试用例的时候，不会去真的请求是数据，因此需要模拟数据，因此`__mock__`文件夹中就是模拟的数据
 ```javascript
 export default {
