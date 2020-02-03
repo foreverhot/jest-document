@@ -8,153 +8,46 @@
 
 [![1579489806.jpg](https://i.postimg.cc/K8mzY4bc/1579489806.jpg)](https://postimg.cc/ykrBQ1W2)
 
-## 在项目中使用所需的知识点
+## 在实际项目中运用jest所具备知识点
 1. jest （测试框架）
-* 匹配器matchers
-* 钩子函数
-* 异步代码测试
-* mock 函数
-* 定时器测试
-* snapshot快照测试
-* TDD、BDD、单元测试、集成测试（简单了解）
+* 匹配器matchers  
+https://blog.csdn.net/Jsoning/article/details/103898385
+* 钩子函数  
+https://blog.csdn.net/Jsoning/article/details/103984393
+* 异步代码测试  
+https://blog.csdn.net/Jsoning/article/details/103976195
+* mock 函数  
+https://blog.csdn.net/Jsoning/article/details/103992103
+* 定时器测试  
+https://blog.csdn.net/Jsoning/article/details/104014997
+* snapshot快照测试  
+https://blog.csdn.net/Jsoning/article/details/104015027
+* TDD、BDD、单元测试、集成测试（简单了解）  
+https://blog.csdn.net/Jsoning/article/details/104015061
+
+以上链接是对于各个知识点用法的个人总结，包括了大部分jest框架中的用法，当然也可以去查看jest的官方文档
 
 2. Vue Test Utils （ Vue.js官方的单元测试实用工具库）
-* 内容不多，最好全部了解一下
+* 想要在vue中更方便的使用jest进行测试的话，vue官方很贴心的提供了一个test-utils，可以更方便的对vue中的组件，DOM等进行测试
+* 官方链接：https://vue-test-utils.vuejs.org/zh/
 
-3. vue知识
-
-
-## 简单一个测试用例，熟悉基本用法
-```javascript
-import add from './index.js'
-
-describe('测试文件', () => {
-  it('测试 add 方法，1 + 1 = 2', () => {
-    const addSum = add(1, 1)
-    expect(addSum).toBe(2)
-  })
-})
-```
-### 常用匹配器
-* `.toBe(value)：`匹配值，相当于===  
-* `.toEqual(value)：`匹配值，只匹配内容不匹配引用，可以用于引用类型的匹配
-* `.toBeNull()：`匹配null
-* `.toBeUndefined()：`匹配undefined
-* `.toBeNaN()：`匹配NaN
-* `.toBeTruthy()：`匹配结果为true的值
-* `.toBeFalsy()：`匹配结果为false的值
-* `.not：`对后续的匹配取反
-* ...等等
-
-### 钩子函数
-* beforeAll：所有测试之前执行
-* afterAll：所有测试执行完之后
-* beforeEach：每个测试实例之前执行
-* afterEach：每个测试实例完成之后执行
-```javascript
-import add from './index.js'
-beforeAll(() => {
-  console.log('---beforeAll---')
-})
-
-afterAll(() => {
-  console.log('---afterAll---')
-})
-
-beforeEach(() => {
-  console.log('---beforeEach---')
-})
-
-afterEach(() => {
-  console.log('---afterEach---')
-})
-
-describe('测试文件', () => {
-  it('测试 add 方法，1 + 1 = 2', () => {
-    const addSum = add(1, 1)
-    expect(addSum).toBe(2)
-  })
-
-  it('测试 add 方法，2 + 2 = 4', () => {
-    const addSum = add(2, 2)
-    expect(addSum).toBe(4)
-  })
-})
-
-/**
- * 执行结果：
- * ---beforeAll---
- * ---beforeEach---
- * ---afterEach----
- * ---beforeEach---
- * ---afterEach----
- * ---afterAll---
- * 
- * /
-```
-
-### 异步代码测试
-```javascript
-// index.js
-export function featchData() {
-  return axios.get('/ceshi')
-}
-```
-```javascript
-// index.test.js
-it('测试 featchData', (done) => {
-  featchData((data) => {
-    //测试data中是否包含code: 200
-    expect(data).toMatchObject({
-      code: 200
-    })
-    done()
-  })
-})
-```
+3. vuejs
+* 想要在vue中使用jest，对于vue框架的使用是必备的
 
 
-### mock 函数
+## 在vue中使用jest
+**<font color=red>前提已经了解以上3点基础知识</font>**  
+这里做了一个demo，大致先了解一下demo所具有的功能
+[![11.gif](https://i.postimg.cc/DzDmDmwG/11.gif)](https://postimg.cc/wtX6RqJx)
 
-### 定时器测试
-```javascript
-// index.js
-export const timer1 = (callback) => {
-  setTimeout(() => {
-      callback()
-  }, 3000)
-}
-```
+这个demo涉及到的测试功能有：
+* DOM的测试
+* 异步代码测试
+* 定时器测试
+* vuex测试
+* 快照测试
+* 单元测试
+* 集成测试
+* 等
 
-```javascript
-// index.test.js
-import { timer1 } from './index'
-
-it('使用done，测试定时器', (done) => {
-  timer1(() => {
-    expect(1).toBe(1)
-    done()
-  })
-})
-
-```
-
-### TDD、BDD、单元测试、集成测试
-TDD： Test Driven Development 测试驱动开发
-BDD： Behavior Driven Development 行为驱动开发
-
-## Vue Test Utils
-```javascript
-import { mount, shallowMount } from '@vue/test-utils'
-import Foo from './Foo.vue'
-
-describe('Foo', () => {
-  it('renders a div', () => {
-    const wrapper = mount(Foo)
-    expect(wrapper.contains('div')).toBe(true)
-  })
-})
-```
-
-
-## 博客地址：https://blog.csdn.net/Jsoning/article/details/103878945
+**下面我们开始分析项目demo**
