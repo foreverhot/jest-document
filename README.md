@@ -52,6 +52,8 @@ https://blog.csdn.net/Jsoning/article/details/104015061
 * 集成测试
 * 等
 
+**克隆该项目，`npm run test` 即可查看该项目测试结果**
+
 **下面我们开始分析项目demo**  
 1. 安装jest  
 在通过`vue-cli`初始化项目的时候，选择单元测试和jest测试框架即可
